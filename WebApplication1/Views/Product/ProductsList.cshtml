@@ -360,11 +360,11 @@
 		<!-- Primary Content Starts -->
 			<div class="col-md-9">
 			<!-- Main Heading Starts -->
-				<h2 class="main-heading2 inner">
+				@*<h2 class="main-heading2 inner">
 					Spices &amp; Herbs
-				</h2>
+				</h2>*@
 			<!-- Main Heading Ends -->
-			<!-- Category Intro Content Starts -->
+			@*<!-- Category Intro Content Starts -->
 				<div class="row cat-intro">
 					<div class="col-sm-3">
 						<img src="images/misc/cat-thumb-img1.jpg" alt="Image" class="img-responsive img-thumbnail" />
@@ -378,7 +378,7 @@
 						</p>
 					</div>
 				</div>					
-			<!-- Category Intro Content Ends -->
+			<!-- Category Intro Content Ends -->*@
 			<!-- Product Filter Starts -->
 				<div class="product-filter">
 					<div class="row">
@@ -426,10 +426,10 @@
 					<div class="col-xs-12">
 						<div class="product-col list clearfix">
 							<div class="image">
-								<img src="~/images/product-images/10.jpg" alt="product" class="img-responsive" />
+								<img src=@item.URLImage alt="product" class="img-responsive" />
 							</div>
 							<div class="caption">
-								<h4><a href="product-full.html">Digital Electro Goods</a></h4>
+								<h4>@item.Name</h4>
 								<div class="description">
 									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 								</div>
