@@ -19,10 +19,32 @@ namespace WebApplication1.Controllers
         {
             var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
             return View(productModels.ToList());
+           //var r= db.ProductModels.Where(p=>p.Price<from&&p.Price>ghgh&&)
+        }
+
+        // GET: Product
+        public ActionResult Search(int? priceFrom, int? priceUntil, string model, string color)
+        {
+            var result = db.ProductModels.Where(p => p.Price > priceFrom && p.Price < priceUntil && p.Type == model && p.Color == color);
+            return View(result.ToList());
+        }
+
+        // GET: Product
+        public ActionResult ProductsGrid()
+        {
+            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+            return View(productModels.ToList());
+        }
+
+        // GET: Product
+        public ActionResult ProductsList()
+        {
+            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+            return View(productModels.ToList());
         }
 
         // GET: Product/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult ProductDetail(int? id)
         {
             if (id == null)
             {
