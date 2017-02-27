@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Product/Details/5
-        public ActionResult ProductDetail(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -65,6 +65,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
+        public ActionResult AddToCart()
+        {
+            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+            return View();
+        }
         // POST: Product/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

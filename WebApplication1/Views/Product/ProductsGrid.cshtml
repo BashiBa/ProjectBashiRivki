@@ -52,7 +52,7 @@
             <div class="container">
                 <!-- Nested Row Starts -->
                 <div class="row">
-                    <!-- Logo Starts -->
+                    <!-- Logo Starts --->
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <a href="index.html">
                             <img src="~/images/logo.png" alt="Digi Shoppe" class="img-responsive logo" />
@@ -412,25 +412,35 @@
                     @foreach (var item in Model)
             {
                         <div class="col-md-4 col-sm-6">
-                            <div class="product-col">
-                                <div class="image">
+                            
+                            <div class="product-col" @*onclick="location.href = 'Details/@item.ProductModelID'"*@ >
+                               @*@Html.ActionLink("", "Details", new { id = item.ProductModelID })*@
+                                
+                                <div class="image"  >
                                     <img src=@item.URLImage alt="product" class="img-responsive" />
                                 </div>
-                                <div class="caption">
-                                    <h4>@item.Name</h4>
+                                <div class="caption" >
+                                    <h4 >@item.Name</h4>
                                     <h4>@item.Type</h4>
                                     <h4>@item.Color</h4>
                                     <div class="description">
-                                      <!--כרגע תאור דיפולטיבי שתקעתי נחליט אם יש צורך להוסיף לכל אחד ואחד-->
+                                        <!--כרגע תאור דיפולטיבי שתקעתי נחליט אם יש צורך להוסיף לכל אחד ואחד-->
                                         buy this now!
                                     </div>
                                     <div class="price">
                                         <span class="price-new">ש"ח @Html.DisplayFor(modelItem => item.Price)</span>
-                                       <!--<span class="price-old">$249.50</span>  כרגע ללא אפשרות זו, נראה בהמשך--> 
+                                        <!--<span class="price-old">$249.50</span>  כרגע ללא אפשרות זו, נראה בהמשך-->
                                     </div>
-                                    <div class="cart-button button-group">
-                                        <button type="button" class="btn btn-cart">
-                                            <i class="fa fa-shopping-cart"></i>
+                                    <div class="cart-button button-group" @*onclick="addToSession('id', 'url', 'name', 'type', 'color', 'price', 'manufacturer')";*@
+                                           @*‫onclick="addToSession('@item.ProductModelID', '@item.URLImage', '@item.Name',' @item.Type', '@item.Color','@item.Price', '@item.ManufacturerModels.Name');"*@
+                                         @*onclick="hellow(@item);"*@
+                                        @*‫onclick="addToSession(@item.ProductModelID, @item.URLImage, @item.Name, @item.Type, @item.Color,@item.Price, @item.ManufacturerModels.Name);"*@
+                                         onclick="addToSession('2', 'http://files-ptdpritol.netdna-ssl.com/system/photos/1541838/show/5e1389a2da8d5db04c6096c3312a2501.jpg', 'iPhone 7 ',' 128GB SimFree', '','4000', 'Apple');">
+                                        
+                                        <button type="button" class="btn btn-cart" 
+                                                
+>
+                                            <i class="fa fa-shopping-cart"  ></i>
                                             Add to cart
                                         </button>
                                         <button type="button" title="Wishlist" class="btn btn-wishlist">
@@ -743,5 +753,7 @@
         <script src="~/js/jquery.magnific-popup.min.js"></script>
         <script src="~/js/owl.carousel.min.js"></script>
         <script src="~/js/custom.js"></script>
+        <script src="~/js/sessionPlagin.js"></script>
+        <script src="~/js/SessionManager.js"></script>
 </body>
 </html>
