@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using PagedList;
+using System.Web.Script.Serialization;
 
 namespace WebApplication1.Controllers
 {
@@ -22,26 +24,77 @@ namespace WebApplication1.Controllers
            //var r= db.ProductModels.Where(p=>p.Price<from&&p.Price>ghgh&&)
         }
 
+        
+
         // GET: Product
-        public ActionResult Search(int? priceFrom, int? priceUntil, string model, string color)
+        public string Search(int? priceFrom, int? priceTo, string color, string manufacturer)
         {
-            var result = db.ProductModels.Where(p => p.Price > priceFrom && p.Price < priceUntil && p.Type == model && p.Color == color);
-            return View(result.ToList());
+
+            if (priceFrom == null)
+                priceFrom = 0;
+            if (priceTo == null)
+                priceTo = 999999;
+            JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
+            var result = db.ProductModels.Where(p => p.Price > priceFrom && p.Price < priceTo && p.Color == color && p.ManufacturerModels.Name == manufacturer).Include(m=>m.ManufacturerModels);
+            var TheJson = TheSerializer.Serialize(result.ToList());
+
+            return TheJson;
+
         }
 
         // GET: Product
-        public ActionResult ProductsGrid()
+        public ActionResult ProductsGrid(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
-            return View(productModels.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productModels = productModels.Where(s => s.Name.Contains(searchString)
+                                       || s.Color.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    productModels = productModels.OrderByDescending(s => s.Name);
+                    break;
+                case "Price":
+                    productModels = productModels.OrderBy(s => s.Price);
+                    break;
+                case "date_desc":
+                    productModels = productModels.OrderByDescending(s => s.Price);
+                    break;
+                default:  // Name ascending 
+                    productModels = productModels.OrderBy(s => s.Price);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            //return View(students.ToPagedList(pageNumber, pageSize));
+
+            // var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+            return View(productModels.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Product
-        public ActionResult ProductsList()
-        {
-            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
-            return View(productModels.ToList());
-        }
+
 
         // GET: Product/Details/5
         public ActionResult Details(int? id)
@@ -66,11 +119,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        public ActionResult AddToCart()
-        {
-            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
-            return View();
-        }
+      
         // POST: Product/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -148,6 +197,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -156,5 +206,62 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        public ActionResult ProductsList(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+       
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+           
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productModels = productModels.Where(s => s.Name.Contains(searchString)
+                                       || s.Color.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    productModels = productModels.OrderByDescending(s => s.Name);
+                    break;
+                case "Price":
+                    productModels = productModels.OrderBy(s => s.Price);
+                    break;
+                case "date_desc":
+                    productModels = productModels.OrderByDescending(s => s.Price);
+                    break;
+                default:  // Name ascending 
+                    productModels = productModels.OrderBy(s => s.Price);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+           //return View(students.ToPagedList(pageNumber, pageSize));
+        
+       // var productModels = db.ProductModels.Include(p => p.ManufacturerModels);
+            return View(productModels.ToPagedList(pageNumber, pageSize));
+        }
+
+
+
+
     }
 }

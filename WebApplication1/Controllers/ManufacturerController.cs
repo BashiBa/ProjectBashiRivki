@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -123,5 +125,31 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //public List<ManufacturerModel> GetManufacturers()
+        //{
+        //    List<ManufacturerModel> a = new List<ManufacturerModel>();
+        //    a.Add(db.ManufacturerModels.ToList()[0]);
+
+        //    return a;
+        //}
+
+        [WebMethod]
+        public string  GetManufactures()
+        {
+            // instantiate a serializer
+            JavaScriptSerializer TheSerializer = new JavaScriptSerializer();
+
+            //optional: you can create your own custom converter
+            //TheSerializer.RegisterConverters(new JavaScriptConverter[] { new MyCustomJson() });
+
+            var manufactors = db.ManufacturerModels.ToList();
+
+            var TheJson = TheSerializer.Serialize(manufactors);
+
+            //context.Response.Write(TheJson);
+            return TheJson;
+        }
+       
     }
 }

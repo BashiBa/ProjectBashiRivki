@@ -1,13 +1,13 @@
 //MAGNIFIC POPUP
-$(document).ready(function() {
-  $('.images-block').magnificPopup({
-    delegate: 'a', 
-    type: 'image',
-    gallery: {
-      enabled: true
-    }
-  });
-});
+//$(document).ready(function() {
+//  $('.images-block').magnificPopup({
+//    delegate: 'a', 
+//    type: 'image',
+//    gallery: {
+//      enabled: true
+//    }
+//  });
+//});
 
 (function($) {
 
