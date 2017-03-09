@@ -104,7 +104,7 @@ hr{
 .header-wrap.inner{
 	padding-top:20px;
 	padding-bottom:20px;
-	background-image:url(../images/header-bg.jpg);
+	background-image:url(../images/iphone7.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -555,7 +555,7 @@ hr{
 			   -moz-border-radius:5px;
 					border-radius:5px;		
 		}
-		.product-co
+		.product-col{
 			padding:15px 10px;
 			margin-bottom:20px;
 			text-align:center;
