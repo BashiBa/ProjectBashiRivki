@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Microsoft.Owin.Logging;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Profile;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -13,6 +16,52 @@ namespace WebApplication1.Controllers
     public class PurchaseController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        // POST: Purchase/AddToCart
+        public ActionResult AddToSessionCart(int id, string url, string name, string type, string color, double price, int manufacturerID, string manufacturerName)
+        {
+            try
+            {
+
+                ProductModel product = new ProductModel();
+                product.ProductModelID = id;
+                product.URLImage = url;
+                product.Name = name;
+                product.Type = type;
+                product.Color = color;
+                product.Price = price;
+                ManufacturerModel modelPhone = new ManufacturerModel();
+                modelPhone.ManufacturerModelID = manufacturerID;
+                modelPhone.Name = manufacturerName;
+                product.ManufacturerModels = modelPhone;
+                List<ProductModel> products1 = Session["cart"] as List<ProductModel>;
+                if (products1 == null)
+                {
+                    products1 = new List<ProductModel>();
+                }
+                products1.Add(product);
+                //products1[0] = product;
+                Session["cart"] = products1;
+                List<ProductModel> products = Session["cart"] as List<ProductModel>;
+                ProductModel product2 = products[(products.Count) - 1];
+                PurchaseModel purchase = new PurchaseModel();
+                purchase.ProductModels = products;
+
+                return this.Json(new { success = "true" });
+            }
+            catch (Exception e)
+            {
+                return this.Json(new { success = "error" });
+            }
+        }
+
+        // GET: Purchase
+        //public ActionResult AddToCart()
+        //{
+        //    return View();
+        //}
+
 
         // GET: Purchase
         public ActionResult Index()
@@ -36,22 +85,50 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Purchase/Create
-        public ActionResult Create()
+        public ActionResult AddToCart()//Create
         {
-            return View();
+            //לכאן מגיעים בעת לחיצה על הצג סל
+            //שולפים את המוצרים כמו שעשית. לא הייתי מרוקנת עדיין את הסשן אלא מחקה לאישור הקניה בHTTPPOST
+            List<ProductModel> products = Session["cart"] as List<ProductModel>;
+            //Session["Cart"] = null;
+            PurchaseModel purchase = new PurchaseModel();
+            purchase.ProductModels = products;
+            //יצירת אוביקט קניה, השמתרשימת המוצרים ששלפת ושליחת המודל קניה בהחזרת הVIEW
+            //הVIEW מחזיר את עמוד הצג סל+ פרטי תשלום
+            return View(purchase);
         }
 
         // POST: Purchase/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PurchaseModelID,ApplicationUserId,IsDone,CreditNum,ValidityMonth,ValidityYear")] PurchaseModel purchaseModel)
+        //[ValidateAntiForgeryToken]
+       // [Bind(Include = "PurchaseModelID,ApplicationUserId,IsDone,CreditNum,ValidityMonth,ValidityYear")]
+        public ActionResult AddToCart( PurchaseModel purchaseModel)
         {
+            //לכאן מגיעים בעת לחיצה על SUBMIT אישור הקניה
+            //הוספת הקניה ושמירתה לדיבי
+            // שליחת מייל למנהל / או למשתמש על שהקניה בוצעה בהצלחה
+            //הייתי משתמשת כאן בשדה קניה  טופלה והופכת אותו לאמת ואז בדף של הויו אם המאפיין אמת מציגים קניתך בוצעה בהצלחה מייל ישחל בעוד מספר דקות
+            // לדעתי קל יותר לשלוח מייל לקונה היות והוא במצב רגיסטר ואז לוקחיםן מהיוזר הנוכחי את המייל שלו
+            // אשלח קוד מייל בהמשך
             if (ModelState.IsValid)
             {
+                purchaseModel.IsDone = true;
                 db.PurchaseModels.Add(purchaseModel);
                 db.SaveChanges();
+                string id = HttpContext.User.Identity.Name.ToString();
+                //db.Users.Join<ApplicationUser>
+                //ProfileBase profileBase;
+                //if (!String.IsNullOrEmpty(id))
+                //    profileBase = ProfileBase.Create(id);
+                //else
+                //    profileBase = HttpContext.Profile as ProfileBase;
+                //profileBase.GetPropertyValue("PersonalInformation.Country");
+                ////var user = System.Web.HttpContext.Current.User.Identity.();
+                //string mail = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                SendClienEmail("HEY :)", "rbphones2017@gmail.com", "BASHIRIVKI", "rivkiaha@gmail.com", "R&B PHONES", "קניתך התבצעה בהצלחה כפיםםםםם ;-)", @"~\images\product-images\big-pimg1.jpg");
+                //send menager email
                 return RedirectToAction("Index");
             }
 
@@ -123,5 +200,58 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public string SendClienEmail(string displayFrom, string UserAddress, string UserPassword, string emailTo,
+                 string subject,
+                 string body, string logoRef, string enableSsl = "true")
+        {
+            // Command line argument must the the SMTP host.
+            SmtpClient client = new SmtpClient();
+            client.Port = 587;//587
+            client.Host = "smtp.gmail.com";
+            if (enableSsl == "true")
+                client.EnableSsl = true;
+            else
+                client.EnableSsl = false;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(UserAddress, UserPassword);
+            MailMessage mail = new MailMessage();
+
+            //set the addresses
+            mail.From = new MailAddress(UserAddress, displayFrom);
+            mail.To.Add(emailTo);
+
+            //set the content
+            mail.Subject = subject;
+            // add the body of the message
+            string ourmessage = "<p align=\"right\">" + body;
+            AlternateView htmlView =
+                AlternateView.CreateAlternateViewFromString(
+                    ourmessage + " <br /> <br /> <br />.<img src=cid:companylogo>", null, "text/html");
+
+            //create the LinkedResource (embedded image)
+           // LinkedResource logo = new LinkedResource(logoRef);
+            //logo.ContentId = "companylogo";
+            //add the LinkedResource to the appropriate view
+            //htmlView.LinkedResources.Add(logo);
+
+            //add the views
+            mail.AlternateViews.Add(htmlView);
+
+            try
+            {
+                client.Send(mail);
+                return "Email Send SuccessFully";
+            }
+            catch (Exception ex)
+            {
+                //ILogger.Instance.WriteLog("Problem during send mail error= " + ex.ToString());
+                return "Email Send failed";
+            }
+        }
+
     }
 }

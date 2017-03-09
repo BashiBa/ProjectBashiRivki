@@ -343,7 +343,7 @@
                             <span class="price-old">$249.50</span>
                         </div>
                         <div class="cart-button button-group">
-                            <button type="button" class="btn btn-cart">
+                            <button type="button" class="btn btn-cart" >
                                 <i class="fa fa-shopping-cart hidden-sm hidden-xs"></i>
                                 Add to Cart
                             </button>
@@ -434,8 +434,9 @@
                                     <div class="cart-button button-group" @*onclick="addToSession('id', 'url', 'name', 'type', 'color', 'price', 'manufacturer')";*@
                                            @*‫onclick="addToSession('@item.ProductModelID', '@item.URLImage', '@item.Name',' @item.Type', '@item.Color','@item.Price', '@item.ManufacturerModels.Name');"*@
                                          @*onclick="hellow(@item);"*@
-                                        @*‫onclick="addToSession(@item.ProductModelID, @item.URLImage, @item.Name, @item.Type, @item.Color,@item.Price, @item.ManufacturerModels.Name);"*@
-                                         onclick="addToSession('2', 'http://files-ptdpritol.netdna-ssl.com/system/photos/1541838/show/5e1389a2da8d5db04c6096c3312a2501.jpg', 'iPhone 7 ',' 128GB SimFree', '','4000', 'Apple');">
+                                        @*onclick="addToSession(@item.ProductModelID, @item.URLImage, @item.Name, @item.Type, @item.Color,@item.Price, @item.ManufacturerModels.Name);"*@
+                                         @*onclick="addToSession('2', 'http://files-ptdpritol.netdna-ssl.com/system/photos/1651986/show/6841d081fd48a3ebd8e4b06b2b5f641c.jpg', 'iPhone 6 ', ' 128GB SimFree', '', '4000', '3', 'Apple');">*@
+                                         onclick="addToSession(item);">
                                         
                                         <button type="button" class="btn btn-cart" 
                                                 

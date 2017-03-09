@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201702241227038_AllTables.Designer.cs">
       <DependentUpon>201702241227038_AllTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703092049279_admin.cs" />
+    <Compile Include="Migrations\201703092049279_admin.Designer.cs">
+      <DependentUpon>201703092049279_admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -315,6 +319,8 @@
     <Content Include="js\jquery.magnific-popup.min.js" />
     <Content Include="js\map.js" />
     <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\SessionManager.js" />
+    <Content Include="js\sessionPlagin.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -421,6 +427,7 @@
     <Content Include="Views\Product\ProductsGrid.cshtml" />
     <Content Include="Views\Product\ProductsList.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Purchase\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -439,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702241227038_AllTables.resx">
       <DependentUpon>201702241227038_AllTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703092049279_admin.resx">
+      <DependentUpon>201703092049279_admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
