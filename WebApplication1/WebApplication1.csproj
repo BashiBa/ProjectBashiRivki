@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -235,6 +243,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\magnific-popup.css" />
@@ -258,6 +267,7 @@
     <Content Include="images\grabbing.png" />
     <Content Include="images\header-bg.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logo2.png" />
     <Content Include="images\misc\about-image1.jpg" />
     <Content Include="images\misc\cat-thumb-img1.jpg" />
     <Content Include="images\payment-icon\americanexpress.png" />
@@ -290,7 +300,6 @@
     <Content Include="images\product-images\cart-thumb-img2.jpg" />
     <Content Include="images\product-images\hcart-thumb1.jpg" />
     <Content Include="images\product-images\hcart-thumb2.jpg" />
-    <Content Include="images\product-images\MIMI.JPG" />
     <Content Include="images\product-images\pimg1.jpg" />
     <Content Include="images\product-images\pimg3.jpg" />
     <Content Include="images\product-images\spl-product-img1.jpg" />
@@ -300,6 +309,11 @@
     <Content Include="images\product-images\thumb2.jpg" />
     <Content Include="images\product-images\thumb3.jpg" />
     <Content Include="images\product-images\thumb4.jpg" />
+    <Content Include="images\slider-imgs\gx7.jpg" />
+    <Content Include="images\slider-imgs\iphone7-1.jpg" />
+    <Content Include="images\slider-imgs\iphone7-1jpg.jpg" />
+    <Content Include="images\slider-imgs\iphone7-slide.jpg" />
+    <Content Include="images\slider-imgs\iphone7.jpg" />
     <Content Include="images\slider-imgs\slider-img1.jpg" />
     <Content Include="images\slider-imgs\slider-img2.jpg" />
     <Content Include="images\testimonial-images\image1.jpg" />
@@ -310,6 +324,9 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\ie8-responsive-file-warning.js" />
+    <Content Include="js\ProductListFunctions.js" />
+    <Content Include="js\SessionManager.js" />
+    <Content Include="js\sessionPlagin.js" />
     <Content Include="js\jquery-1.11.1.min.js" />
     <Content Include="js\jquery-migrate-1.2.1.min.js" />
     <Content Include="js\jquery.magnific-popup.min.js" />
@@ -369,8 +386,14 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="typography.cshtml" />
+    <Content Include="Views\Home\Branches.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\map.cshtml" />
+    <Content Include="Views\Home\canvas.cshtml" />
     <None Include="Views\Home\about.cshtml" />
+    <Content Include="Views\Home\AboutTheShop.cshtml" />
     <None Include="Views\Home\contact.cshtml" />
+    <Content Include="Views\Home\Deals.cshtml" />
     <None Include="Views\Home\index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -389,7 +412,6 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
@@ -418,9 +440,9 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\Product\ProductsGrid.cshtml" />
     <Content Include="Views\Product\ProductsList.cshtml" />
-    <Content Include="Views\Product\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
