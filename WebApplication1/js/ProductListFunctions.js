@@ -35,8 +35,7 @@ var url = document.location.protocol + "//" + document.location.host;
        function  serach()
 
        {
-          
-         
+           
            var pricefrom = $("#priceFromFilter").val();//val?
            var priceTo = $("#priceToFilter").val();//val??
            var color=  $("#colorFilter option:selected" ).text();
