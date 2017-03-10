@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -111,6 +110,7 @@ namespace WebApplication1.Controllers
             return View(productModel);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Product/Create
         public ActionResult Create()
         {

@@ -14,14 +14,7 @@ function addToSession(id, url, name, type, color, price, manufacturerID, manufac
     $.post('/Purchase/AddToSessionCart',
            { key: "cart", id: id, name: name, type: type, color: color, price: price, manufacturerID: manufacturerID, manufacturerName: manufacturerName },
            function (data) {
-               if (data == true)
-               {
-                   alert("Success adding to cart !");
-               }
-               else
-               {
-                   alert("Adding to cart failed");
-               }
+               alert(data.success);
                               
                           });
     //listCart = $.session.get("rivki");

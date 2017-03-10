@@ -143,17 +143,17 @@
                     <!-- Currency & Languages Ends -->
                     <!-- Shopping Cart Starts -->
                     <div class="col-md-2 col-sm-3 col-xs-12">
-                        <div id="cart" class="btn-group pull-right">
+                        <div id="cart" class="btn-group pull-right" onclick="location.href = 'Purchase'">
                             <button type="button" data-toggle="dropdown" class="btn dropdown-toggle text-uppercase">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span id="cart-total">0 item(s)</span>
                                 <i class="fa fa-caret-down"></i>
                             </button>
-                            <ul class="dropdown-menu">
+                            @*<ul class="dropdown-menu">
                                 <li>
                                     <p class="text-center">Your shopping cart is empty!</p>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                     <!-- Shopping Cart Ends -->
@@ -202,8 +202,9 @@
                         <li> @Html.ActionLink("Branches", "Branches", "Home") </li>
                         <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Thanks ", "canvas", "Home")</li>
-                     
-                    </ul>
+                        <li>@Html.ActionLink("Admin", "NavAdmin", "Product")
+
+</ul>
                     <!-- Nav Links Ends -->
                     <!-- Search Form Starts -->
                     <form class="navbar-form navbar-right hidden-sm hidden-xs" role="search">

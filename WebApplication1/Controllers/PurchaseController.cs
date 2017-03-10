@@ -41,18 +41,17 @@ namespace WebApplication1.Controllers
                     products1 = new List<ProductModel>();
                 }
                 products1.Add(product);
-                //products1[0] = product;
                 Session["cart"] = products1;
-                List<ProductModel> products = Session["cart"] as List<ProductModel>;
-                ProductModel product2 = products[(products.Count) - 1];
-                PurchaseModel purchase = new PurchaseModel();
-                purchase.ProductModels = products;
+                //List<ProductModel> products = Session["cart"] as List<ProductModel>;
+                //ProductModel product2 = products[(products.Count) - 1];
+                //PurchaseModel purchase = new PurchaseModel();
+                //purchase.ProductModels = products;
 
-                return this.Json(new { success = "true" });
+                return this.Json(new { success = "Success adding to cart !" });
             }
             catch (Exception e)
             {
-                return this.Json(new { success = "error" });
+                return this.Json(new { success = "Adding to cart failed" });
             }
         }
 
