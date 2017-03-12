@@ -17,31 +17,35 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult SuccessPurchase()
+        {
+            return View();
+        }
 
         // POST: Purchase/AddToCart
-        public ActionResult AddToSessionCart(int id, string url, string name, string type, string color, double price, int manufacturerID, string manufacturerName)
+        public ActionResult AddToSessionCart(int id)//, string url, string name, string type, string color, double price, int manufacturerID, string manufacturerName
         {
             try
             {
-
-                ProductModel product = new ProductModel();
-                product.ProductModelID = id;
-                product.URLImage = url;
-                product.Name = name;
-                product.Type = type;
-                product.Color = color;
-                product.Price = price;
-                ManufacturerModel modelPhone = new ManufacturerModel();
-                modelPhone.ManufacturerModelID = manufacturerID;
-                modelPhone.Name = manufacturerName;
-                product.ManufacturerModels = modelPhone;
-                List<ProductModel> products1 = Session["cart"] as List<ProductModel>;
-                if (products1 == null)
+                ProductModel productToSession = db.ProductModels.Find(id);
+                //ProductModel product = new ProductModel();
+                //product.ProductModelID = id;
+                //product.URLImage = url;
+                //product.Name = name;
+                //product.Type = type;
+                //product.Color = color;
+                //product.Price = price;
+                //ManufacturerModel modelPhone = new ManufacturerModel();
+                //modelPhone.ManufacturerModelID = manufacturerID;
+                //modelPhone.Name = manufacturerName;
+                //product.ManufacturerModels = modelPhone;
+                List<ProductModel> products = Session["cart"] as List<ProductModel>;
+                if (products == null)
                 {
-                    products1 = new List<ProductModel>();
+                    products = new List<ProductModel>();
                 }
-                products1.Add(product);
-                Session["cart"] = products1;
+                products.Add(productToSession);
+                Session["cart"] = products;
                 //List<ProductModel> products = Session["cart"] as List<ProductModel>;
                 //ProductModel product2 = products[(products.Count) - 1];
                 //PurchaseModel purchase = new PurchaseModel();
@@ -53,6 +57,26 @@ namespace WebApplication1.Controllers
             {
                 return this.Json(new { success = "Adding to cart failed" });
             }
+        }
+
+
+        public ActionResult ClearFromSession(int id)
+        {
+            List<ProductModel> products = Session["cart"] as List<ProductModel>;
+            //ProductModel productToRemove = products.Find(id);
+            List<ProductModel> newProducts = products.Where(product => !(product.ProductModelID.Equals(id.ToString()))).ToList();
+            Session["Cart"] = newProducts;
+            //products.Remove();
+            
+            return this.Json(new { success = "Success removing from cart !" });
+        }
+
+        public ActionResult TotalPriceInSession()
+        {
+            List<ProductModel> products = Session["cart"] as List<ProductModel>;
+            int sumInSession = (int)products.Sum(product => product.Price);
+
+            return this.Json(new { success = sumInSession });
         }
 
         // GET: Purchase
@@ -113,6 +137,7 @@ namespace WebApplication1.Controllers
             // אשלח קוד מייל בהמשך
             if (ModelState.IsValid)
             {
+                Session["Cart"] = null;
                 purchaseModel.IsDone = true;
                 db.PurchaseModels.Add(purchaseModel);
                 db.SaveChanges();
@@ -128,7 +153,7 @@ namespace WebApplication1.Controllers
                 //string mail = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
                 SendClienEmail("HEY :)", "rbphones2017@gmail.com", "BASHIRIVKI", "rivkiaha@gmail.com", "R&B PHONES", "קניתך התבצעה בהצלחה כפיםםםםם ;-)", @"~\images\product-images\big-pimg1.jpg");
                 //send menager email
-                return RedirectToAction("Index");
+                return RedirectToAction("SuccessPurchase");
             }
 
             return View(purchaseModel);

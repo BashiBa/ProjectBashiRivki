@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    
+
 
     <!-- Bootstrap Core CSS -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
@@ -40,37 +40,36 @@
     @*<meta charset="utf-8" />*@
     @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
     <title>@ViewBag.Title-R&B Phone shope</title>
-   @*@Styles.Render("~/Content/css")*@
+    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
 
-    
+
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
+        </div>*@
 
 
     <!-- HERE I PUT THE BLANK FILE-->
-
     <!-- Header Wrap Starts -->
     <header class="header-wrap inner">
         <!-- Header Top Starts -->
@@ -83,77 +82,77 @@
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <a href="index.html">
                             <img src="~/images/logo.png" alt="Digi Shoppe" class="img-responsive logo" />
-                           
+
                         </a>
                     </div>
                     <!-- Logo Ends -->
                     <!-- Header Top Links Starts -->
                     <div class="col-md-5 col-xs-12 hidden-sm hidden-xs">
                         @*<ul class="list-unstyled list-inline header-links text-center">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#">Wish List(0)</a></li>
-                            <li><a href="cart.html">Shopping Cart</a></li>
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>*@
-                              
-                       @Html.Partial("_LoginPartial") 
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#">Wish List(0)</a></li>
+                                <li><a href="cart.html">Shopping Cart</a></li>
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            </ul>*@
 
-                  
-                            @*<li> @Html.Partial("_LoginPartial")</li>
+                        @Html.Partial("_LoginPartial")
+
+
+                        @*<li> @Html.Partial("_LoginPartial")</li>
                             <li><a href="register.html">Register</a></li>*@
-                        
-                        
-                       
+
+
+
                     </div>
                     <!-- Header Top Links Ends -->
                     <!-- Currency & Languages Starts -->
                     <div class="col-md-2 col-sm-5 col-xs-12 text-center">
                         <!-- Languages Starts -->
                         @*<div class="btn-group">
-                            <button class="btn btn-link dropdown-toggle text-uppercase" data-toggle="dropdown">
-                                Eng
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <ul class="pull-right dropdown-menu">
-                                <li>
-                                    <a tabindex="-1" href="#">English</a>
-                                </li>
-                                <li>
-                                    <a tabindex="-1" href="#">French</a>
-                                </li>
-                            </ul>
-                        </div>*@
+                                <button class="btn btn-link dropdown-toggle text-uppercase" data-toggle="dropdown">
+                                    Eng
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <ul class="pull-right dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="#">English</a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="#">French</a>
+                                    </li>
+                                </ul>
+                            </div>*@
                         <!-- Languages Ends -->
                         <!-- Currency Starts -->
                         @*<div class="btn-group">
-                            <button class="btn btn-link dropdown-toggle text-uppercase" data-toggle="dropdown">
-                                $
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <ul class="pull-right dropdown-menu">
-                                <li><a tabindex="-1" href="#">Pound </a></li>
-                                <li><a tabindex="-1" href="#">US Dollar</a></li>
-                                <li><a tabindex="-1" href="#">Euro</a></li>
-                            </ul>
-                        </div>*@
+                                <button class="btn btn-link dropdown-toggle text-uppercase" data-toggle="dropdown">
+                                    $
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <ul class="pull-right dropdown-menu">
+                                    <li><a tabindex="-1" href="#">Pound </a></li>
+                                    <li><a tabindex="-1" href="#">US Dollar</a></li>
+                                    <li><a tabindex="-1" href="#">Euro</a></li>
+                                </ul>
+                            </div>*@
                         <!-- Currency Ends -->
                     </div>
                     <!-- Currency & Languages Ends -->
                     <!-- Shopping Cart Starts -->
                     <div class="col-md-2 col-sm-3 col-xs-12">
-                        <div id="cart" class="btn-group pull-right" onclick="location.href = 'Purchase'">
+                        <div id="cart" class="btn-group pull-right" onclick="location.href = 'http://localhost:3438/Purchase/AddToCart'">
                             <button type="button" data-toggle="dropdown" class="btn dropdown-toggle text-uppercase">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span id="cart-total">0 item(s)</span>
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             @*<ul class="dropdown-menu">
-                                <li>
-                                    <p class="text-center">Your shopping cart is empty!</p>
-                                </li>
-                            </ul>*@
+                                    <li>
+                                        <p class="text-center">Your shopping cart is empty!</p>
+                                    </li>
+                                </ul>*@
                         </div>
                     </div>
                     <!-- Shopping Cart Ends -->
@@ -181,204 +180,214 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li class="dropdown">
-                               @Html.ActionLink("About us", "AboutTheShop", "Home")                           
-                          
+                            @Html.ActionLink("About us", "AboutTheShop", "Home")
+
                         </li>
                         <li class="dropdown">
                             <a href="~/Product/ProductsList" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Products </a>
                             <div class="dropdown-menu">
                                 <div class="dropdown-inner">
                                     <ul class="list-unstyled">
-                                         <li>@Html.ActionLink("List", "ProductsList", "Product")
-                                        </li>
-                                        <li>@Html.ActionLink("Grid", "ProductsGrid", "Product")</li>
-                                        <!-- אם יהיו לנו במקרה במקרה מוצרים נוספים כמו פלאפונים אביזרים וכו. להוסיף כאן -->
-                                        <li><a tabindex="-1" href="#">maybe we will add to </a></li>
-                                    </ul>
-                   
-                                </div>
+                                        <li>
+                                            @Html.ActionLink("List", "ProductsList", "Product")
+                                    </li>
+                                    <li>@Html.ActionLink("Grid", "ProductsGrid", "Product")</li>
+                                    <!-- אם יהיו לנו במקרה במקרה מוצרים נוספים כמו פלאפונים אביזרים וכו. להוסיף כאן -->
+                                    <li><a tabindex="-1" href="#">maybe we will add to </a></li>
+                                </ul>
+
                             </div>
-                        <li> @Html.ActionLink("*Deals*", "Deals", "Home") </li>
-                        <li> @Html.ActionLink("Branches", "Branches", "Home") </li>
-                        <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Thanks ", "canvas", "Home")</li>
-                        <li>@Html.ActionLink("Admin", "NavAdmin", "Product")
+                        </div>
+                    <li> @Html.ActionLink("*Deals*", "Deals", "Home") </li>
+                    <li> @Html.ActionLink("Branches", "Branches", "Home") </li>
+                    <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Thanks ", "canvas", "Home")</li>
+                    <li class="dropdown">
+                        <a href="~/Product/ProductsList" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">R&B Phones</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-inner">
+                                <ul class="list-unstyled">
+                                    <li>@Html.ActionLink("Create phone", "Create", "Product").If(User.IsInRole("Admin"))</li>
+                                    <li>@Html.ActionLink("All phones", "Index", "Product").If(User.IsInRole("Admin"))</li>
+                                    <li>@Html.ActionLink("All purchase", "Index", "Purchase").If(User.IsInRole("Admin"))</li>
+                                    <li>@Html.ActionLink("All users", "Index", "Account")</li>
+                                    <li><a tabindex="-1" href="#">maybe we will add to </a></li>
+                                </ul>
 
-</ul>
-                    <!-- Nav Links Ends -->
-                    <!-- Search Form Starts -->
-                    <form class="navbar-form navbar-right hidden-sm hidden-xs" role="search">
+                            </div>
+                        </div>
+                </ul>
+                <!-- Nav Links Ends -->
+                <!-- Search Form Starts -->
+                <form class="navbar-form navbar-right hidden-sm hidden-xs" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- Search Form Ends -->
+            </div>
+            <!-- Navbar Cat collapse Ends -->
+        </div>
+        <!-- Nested Container Ends -->
+    </nav>
+    <!-- Main Menu Ends -->
+</header>
+<!-- Header Wrap Ends -->
+<!-- Main Container Starts -->
+<!-- UNTILL HERE -->
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+
+    <!-- Footer Top Starts -->
+    <div class="footer-top">
+        <!-- Nested Container Starts -->
+        <div class="container">
+            <!-- Nested Row Starts -->
+            <div class="row">
+                <!-- Social Network Starts -->
+                <div class="col-sm-6 col-xs-12">
+                    <h3>Follow us</h3>
+                    <h5>We have new phones and atractive deals </h5>
+                    <h5>Buy our  goods products today!</h5>
+                    <ul class="list-unstyled list-inline foot-sm-links">
+                        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <!-- Social Network Ends -->
+                <!-- Subscription Form Starts -->
+                <div class="col-sm-6 col-xs-12">
+                    <h3>Sign Up for our Discounts today!</h3>
+
+                    <form action="#">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            @*<input type="email" class="form-control" placeholder="Enter Your E-mail">*@
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-
-                                    <i class="fa fa-search"></i>
+                                <button class="btn" type="button">
+                                    @Html.Partial("_LoginPartial")
                                 </button>
                             </span>
                         </div>
                     </form>
-                    <!-- Search Form Ends -->
                 </div>
-                <!-- Navbar Cat collapse Ends -->
+                <!-- Subscription Form Ends -->
             </div>
-            <!-- Nested Container Ends -->
-        </nav>
-        <!-- Main Menu Ends -->
-    </header>
-    <!-- Header Wrap Ends -->
-    <!-- Main Container Starts -->
-
-    <!-- UNTILL HERE -->
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        
-            <!-- Footer Top Starts -->
-            <div class="footer-top">
-                <!-- Nested Container Starts -->
-                <div class="container">
-                    <!-- Nested Row Starts -->
-                    <div class="row">
-                        <!-- Social Network Starts -->
-                        <div class="col-sm-6 col-xs-12">
-                            <h3>Follow us</h3>
-                            <h5>We have new phones and atractive deals </h5>
-                            <h5>Buy our  goods products today!</h5>
-                            <ul class="list-unstyled list-inline foot-sm-links">
-                                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Social Network Ends -->
-                        <!-- Subscription Form Starts -->
-                        <div class="col-sm-6 col-xs-12">
-                            <h3>Sign Up for our Discounts today!</h3>
-                            
-                           <form action="#">
-                              <div class="input-group">
-                                    @*<input type="email" class="form-control" placeholder="Enter Your E-mail">*@
-                                    <span class="input-group-btn">
-                                        <button class="btn" type="button">
-                                            @Html.Partial("_LoginPartial")
-                                        </button>
-                                    </span>
-                            </div>
-                            </form>
-                        </div>
-                        <!-- Subscription Form Ends -->
-                    </div>
-                    <!-- Nested Row Ends -->
-                </div>
-                <!-- Nested Container Ends -->
-            </div>
-            <!-- Footer Top Ends -->
-            <!-- Footer Section Starts -->
-            <footer id="footer-area">
-                <!-- Footer Links Starts -->
-                <div class="footer-links">
-                    <!-- Container Starts -->
-                    <div class="container">
-                        <!-- Information Links Starts -->
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h5>Information</h5>
-                            <ul>
-                                <li>@Html.ActionLink("About us", "About", "Home") </li>
-                                <li>@Html.ActionLink("Branches", "Branches", "Home")  </li>
-
-                            </ul>
-                        </div>
-                        <!-- Information Links Ends -->
-                        <!-- My Account Links Starts -->
-                        <!-- My Account Links Ends -->
-                        <!-- Customer Service Links Starts -->
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h5>Service</h5>
-                            <ul>
-                                <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home") </li>
-
-                            </ul>
-                        </div>
-                        <!-- Customer Service Links Ends -->
-                        <!-- Contact Us Starts -->
-
-                        <!-- Follow Us Links Starts -->
-                        <div class="col-md-2 col-sm-3 col-xs-12">
-                            <h5>WebSite Detailes</h5>
-                            <ul>
-                                <li>made by: </li>
-                                <li>R.A and B.B</li>
-                                <li>for web course 2017</li>
-                            </ul>
-                        </div>
-                        <!-- Follow Us Links Ends -->
-                        <!-- Contact Us Starts -->
-                        <div class="col-md-4 col-xs-12 last">
-                            <h5>Email</h5>
-                            <ul>
-                                <li>
-                                    Email Rivki: <a href="mailto:rivkiaha@gmail.com">rivkiaha@gmail.com</a>
-                                </li>
-                                <li>
-                                    Email Bashi: <a href="mailto:bashi050@gmail.com">bashi050@gmail.com</a>
-                                </li>
-                            </ul>
-                         
-                        </div>
-                        
-                    <!-- Container Ends -->
-                </div>
-                <!-- Footer Links Ends -->
-                <!-- Copyright Area Starts -->
-                <div class="copyright">
-                    <!-- Container Starts -->
-                    <div class="container">
-                        <!-- Starts -->
-                        
-                        <!-- Ends -->
-                        <!-- Payment Gateway Links Starts -->
-                        <ul class="pull-right list-inline">
-                            <li>
-                                <img src="~/images/payment-icon/cirrus.png" alt="PaymentGateway" />
-                            </li>
-                            <li>
-                                <img src="~/images/payment-icon/paypal.png" alt="PaymentGateway" />
-                            </li>
-                            <li>
-                                <img src="~/images/payment-icon/visa.png" alt="PaymentGateway" />
-                            </li>
-                            <li>
-                                <img src="~/images/payment-icon/mastercard.png" alt="PaymentGateway" />
-                            </li>
-                            <li>
-                                <img src="~/images/payment-icon/americanexpress.png" alt="PaymentGateway" />
-                            </li>
-                        </ul>
-                        <!-- Payment Gateway Links Ends -->
-                    </div>
-                    <!-- Container Ends -->
-                </div>
-                <!-- Copyright Area Ends -->
-            </footer>
-            <!-- Footer Section Ends -->
-            <!-- JavaScript Files -->
-        
-
-            <script src="js/jquery-1.11.1.min.js"></script>
-            <script src="js/jquery-migrate-1.2.1.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/bootstrap-hover-dropdown.min.js"></script>
-            <script src="js/jquery.magnific-popup.min.js"></script>
-            <script src="js/owl.carousel.min.js"></script>
-            <script src="js/custom.js"></script>
-        
+            <!-- Nested Row Ends -->
+        </div>
+        <!-- Nested Container Ends -->
     </div>
+    <!-- Footer Top Ends -->
+    <!-- Footer Section Starts -->
+    <footer id="footer-area">
+        <!-- Footer Links Starts -->
+        <div class="footer-links">
+            <!-- Container Starts -->
+            <div class="container">
+                <!-- Information Links Starts -->
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                    <h5>Information</h5>
+                    <ul>
+                        <li>@Html.ActionLink("About us", "About", "Home") </li>
+                        <li>@Html.ActionLink("Branches", "Branches", "Home")  </li>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                    </ul>
+                </div>
+                <!-- Information Links Ends -->
+                <!-- My Account Links Starts -->
+                <!-- My Account Links Ends -->
+                <!-- Customer Service Links Starts -->
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                    <h5>Service</h5>
+                    <ul>
+                        <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home") </li>
+
+                    </ul>
+                </div>
+                <!-- Customer Service Links Ends -->
+                <!-- Contact Us Starts -->
+                <!-- Follow Us Links Starts -->
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                    <h5>WebSite Detailes</h5>
+                    <ul>
+                        <li>made by: </li>
+                        <li>R.A and B.B</li>
+                        <li>for web course 2017</li>
+                    </ul>
+                </div>
+                <!-- Follow Us Links Ends -->
+                <!-- Contact Us Starts -->
+                <div class="col-md-4 col-xs-12 last">
+                    <h5>Email</h5>
+                    <ul>
+                        <li>
+                            Email Rivki: <a href="mailto:rivkiaha@gmail.com">rivkiaha@gmail.com</a>
+                        </li>
+                        <li>
+                            Email Bashi: <a href="mailto:bashi050@gmail.com">bashi050@gmail.com</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- Container Ends -->
+            </div>
+            <!-- Footer Links Ends -->
+            <!-- Copyright Area Starts -->
+            <div class="copyright">
+                <!-- Container Starts -->
+                <div class="container">
+                    <!-- Starts -->
+                    <!-- Ends -->
+                    <!-- Payment Gateway Links Starts -->
+                    <ul class="pull-right list-inline">
+                        <li>
+                            <img src="~/images/payment-icon/cirrus.png" alt="PaymentGateway" />
+                        </li>
+                        <li>
+                            <img src="~/images/payment-icon/paypal.png" alt="PaymentGateway" />
+                        </li>
+                        <li>
+                            <img src="~/images/payment-icon/visa.png" alt="PaymentGateway" />
+                        </li>
+                        <li>
+                            <img src="~/images/payment-icon/mastercard.png" alt="PaymentGateway" />
+                        </li>
+                        <li>
+                            <img src="~/images/payment-icon/americanexpress.png" alt="PaymentGateway" />
+                        </li>
+                    </ul>
+                    <!-- Payment Gateway Links Ends -->
+                </div>
+                <!-- Container Ends -->
+            </div>
+            <!-- Copyright Area Ends -->
+    </footer>
+    <!-- Footer Section Ends -->
+    <!-- JavaScript Files -->
+
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-hover-dropdown.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 </html>

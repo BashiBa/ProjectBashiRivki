@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
+using System.Net;
 
 namespace WebApplication1.Controllers
 {
@@ -17,6 +18,7 @@ namespace WebApplication1.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -394,6 +396,55 @@ namespace WebApplication1.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Index()
+        {
+            //var allusers = db.Users.ToList();
+            //var users = allusers.Where(x => x.Roles.Select(role => role.RoleId).Contains("User")).ToList();
+            //var userVM = users.Select(user => new UsersViewModel { Username = user.UserName, Roles = string.Join(",", user.Roles.Select(role => role.RoleId)) }).ToList();
+
+            //var admins = allusers.Where(x => x.Roles.Select(role => role.RoleId).Contains("Admin")).ToList();
+            //var adminsVM = admins.Select(user => new UsersViewModel { Username = user.UserName, Roles = string.Join(",", user.Roles.Select(role => role.RoleId)) }).ToList();
+            //var model = new GroupedUserViewModel { Users = userVM, Admins = adminsVM };
+
+            return View(db.Users.ToList());
+        }
+
+        // GET: Product/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(applicationUser);
+        }
+
+        // POST: Product/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ApplicationUser applicationUser = db.Users.Find(id);
+            db.Users.Remove(applicationUser);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         //
         // GET: /Account/ExternalLoginFailure

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
+
     public class PurchaseModel
     {
         public int PurchaseModelID { get; set; }

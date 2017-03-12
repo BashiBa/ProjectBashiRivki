@@ -54,6 +54,7 @@
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/custom.js"></script>
     <script src="~/js/ProductListFunctions.js"></script>
+    <script src="~/js/SessionManager.js"></script>
 </head>
 
 <body>
@@ -281,7 +282,8 @@
                                         <!--<span class="price-old">$249.50</span>  כרגע ללא אפשרות זו, נראה בהמשך-->
                                     </div>
                                     <div class="cart-button button-group">
-                                        <button type="button" class="btn btn-cart">
+                                        <button type="button" class="btn btn-cart" onclick="addToSession(this)"
+                                                   data-assigned-id="@item.ProductModelID">
                                             <i class="fa fa-shopping-cart hidden-sm hidden-xs"></i>
                                             Add to Cart
                                         </button>

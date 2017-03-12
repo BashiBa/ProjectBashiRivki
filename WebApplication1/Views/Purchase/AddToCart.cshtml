@@ -305,7 +305,8 @@
                                         <button type="submit" title="Update" class="btn btn-default tool-tip">
                                             <i class="fa fa-refresh"></i>
                                         </button>
-                                        <button type="button" title="Remove" class="btn btn-default tool-tip">
+                                        <button type="button" title="Remove" class="btn btn-default tool-tip" onclick="removeFromSession(this)"
+                                                   data-assigned-id="@item.ProductModelID">
                                             <i class="fa fa-times-circle"></i>
                                         </button>
                                     </td>
@@ -349,6 +350,7 @@
                             </td>
                             <td colspan="2" class="text-left">
                                 $300
+                                GetSumPriceInSession();
                             </td>
                         </tr>
                     </tfoot>
