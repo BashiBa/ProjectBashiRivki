@@ -4,7 +4,7 @@
     ViewBag.Title = "AddToCart";
 }
 
-<h2>AddToCart</h2>
+
 ﻿    <!doctype html>
 <html lang="en">
 <head>
@@ -50,8 +50,9 @@
 <body>
     @using (@Html.BeginForm())
     {
+       
         <!-- Header Wrap Starts -->
-      
+     
         <!-- Header Wrap Ends -->
         <!-- Breadcrumb Starts -->
         <div class="breadcrumb-wrap">
@@ -90,11 +91,12 @@
                                 Price
                             </td>
                             <td class="text-center">
-                                Total
+                                Commands
                             </td>
                             <td class="text-center">
-                                Remove
+                                Action
                             </td>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -107,11 +109,12 @@
                                         @*<a href="product.html">
                                                 <img src=@item.URLImage alt="Product Name" title="Product Name" class="img-thumbnail" />
                                             </a>*@
-                                        <div class="image">
-                                            <img src=@item.URLImage alt="product" class="img-responsive" />
+                                      <div class="image">
+                                          <img src=@item.URLImage  width="60" height="60"   &emsp alt="product" class="img-responsive" />
                                         </div>
                                     </td>
                                     <td class="text-center">
+                                        <br />
                                         <a href="product-full.html">@item.Name</a>
                                     </td>
                                     @*
@@ -125,17 +128,21 @@
                                             $150.00
                                         </td>*@
                                     <td class="text-center">
-                                     1
+                                        <br />
+                                       1
                                     </td>
                                     <td class="text-center">
-                                        @item.Price
+                                        <br />
+                                        @item.Price$
                                     </td>
                                     <td class="text-center">
-                                       rivki from session
+                                        <br />
+                                    A spicial price just today!
                                     </td>
                                     <td class="text-center">
-                                       
-                                        <button type="button" title="Remove" class="btn btn-default tool-tip">
+                                      
+                                        <button type="button" title="Remove" class="btn btn-default tool-tip" onclick="removeFromSession(this)"
+                                                   data-assigned-id="@item.ProductModelID">
                                             <i class="fa fa-times-circle"></i>
                                         </button>
                                     </td>
@@ -177,8 +184,9 @@
                             <td colspan="4" class="text-right">
                                 <strong>Total :</strong>
                             </td>
-                            <td colspan="2" class="text-left">
+                            <td colspan="2" class="text-left"   >
                                 $300
+                                GetSumPriceInSession();
                             </td>
                         </tr>
                     </tfoot>
@@ -186,36 +194,42 @@
             </div>
             <!-- Shopping Cart Table Ends -->
             <!-- Shipping Section Starts -->
-
-
-     
             <section class="registration-area">
                 <div class="row">
                     <!-- Shipping & Shipment Block Starts -->
                     <div class="col-sm-6">
                         <!-- Taxes Block Starts -->
-                        <div class="panel panel-smart">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    delivery details
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <!-- Form Starts -->
-                                @*<form class="form-horizontal" role="form">*@
-                                   <p> if we hava a time for that</p>
-                                @*</form>*@
-                                <!-- Form Ends -->
-                            </div>
-                        </div>
+                    
                         <!-- Taxes Block Ends -->
                         <!-- Shipment Information Block Starts -->
                         <div class="panel panel-smart">
                             <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    Shipment Information
+                                <h3 class="panel-title" style="color:cornflowerblue" >
+                                    delivery details
                                 </h3>
                             </div>
+                            <div class="panel-body">
+                                <p> We use your log in account  delivery details</p>
+                                <p>Bashi - Rivki  if we have a time to bring from db</p>
+                                @Html.HiddenFor(model => model.ApplicationUserId)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => Model.ApplicationUser.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => Model.ApplicationUser.City, new { htmlAttributes = new { @class = "form-control" } })
+                                        @*@Html.ValidationMessageFor(model => Model.ApplicationUser.City, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="panel panel-smart">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="color:cornflowerblue" >
+                                    Payment Information
+                                </h3>
+                            </div>
+                           
                             <div class="panel-body">
                                 <!-- Form Starts -->
                                 @*<form class="form-horizontal" role="form">*@
@@ -235,7 +249,7 @@
                                         @Html.ValidationMessageFor(model => model.ValidityMonth, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                             
+
                                 <br />
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ValidityYear, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -243,58 +257,36 @@
                                         @Html.EditorFor(model => model.ValidityYear, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.ValidityYear, "", new { @class = "text-danger" })
                                     </div>
-                             
+
                                 </div>
-                            
-                                    <div class="form-group" @*onclick="location.href = 'Index/@item.ProductModelID'"*@>
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-black">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
+
+                                <br />
+                                <h3> <b>NOTE:</b></h3>
+                                <h5>If you do not want to pay online
+                                    You can pay by phone 055-05502231 </h5>
+                                <div class="form-group" @*onclick="location.href = 'Index/@item.ProductModelID'"*@>
+                                    @*<div class="col-sm-offset-3 col-sm-9">*@
+                                        <input type="submit" value="Completion purchase" class="btn btn-black" name="AddToCart" />
+                                    @*</div>*@
+                                </div>
                                 @*</form>*@
                                 <!-- Form Ends -->
                             </div>
+                            <!-- =paste here-->
                         </div>
                         <!-- Shipment Information Block Ends -->
-                        <div class="panel panel-smart">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    delivery details
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <!-- Form Starts -->
-                                @*<form class="form-horizontal" role="form">*@
-                                <p> if we hava a time for that</p>
-                                @*</form>*@
-                                <!-- Form Ends -->
-                            </div>
-                        </div>
+                    
                     </div>
                     <!-- Shipping & Shipment Block Ends -->
                     <!-- Discount & Conditions Blocks Starts -->
                     <div class="col-sm-6">
                         <!-- Discount Coupon Block Starts -->
-                        <div class="panel panel-smart">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    Discount Coupon Code
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <h3 class="panel-title">Before you finish your purches</h3>
-                                <p> Our store has the cheapest prices!
-                                 Want to double check before?  </p>
-                                    <a href="http://www.zap.co.il/models.aspx?sog=e-cellphone" target=""> CLICK HERE</a>
-</div>
-                        </div>
+                   
                         <!-- Discount Coupon Block Ends -->
                         <!-- Conditions Panel Starts -->
                         <div class="panel panel-smart">
                             <div class="panel-heading">
-                                <h3 class="panel-title">
+                                <h3 class="panel-title" style="color:cornflowerblue" >
                                     Terms &amp; Conditions
                                 </h3>
                             </div>
@@ -322,42 +314,7 @@
                         </div>
                         <!-- Conditions Panel Ends -->
                         <!-- Total Panel Starts -->
-                        <div class="panel panel-smart">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    Total
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <dl class="dl-horizontal">
-                                    <dt>Coupon Discount :</dt>
-                                    <dd>$-25.00</dd>
-                                    <dt>Subtotal :</dt>
-                                    <dd>$300.00</dd>
-                                    <dt>Payment Fee :</dt>
-                                    <dd>$10.00</dd>
-                                    <dt>Shipment Fee :</dt>
-                                    <dd>$15.00</dd>
-                                    <dt>Tax Total :</dt>
-                                    <dd>$315.00</dd>
-                                </dl>
-                                <hr />
-                                <dl class="dl-horizontal total">
-                                    <dt>Total :</dt>
-                                    <dd>$325.00</dd>
-                                </dl>
-                                <hr />
-                                <div class="text-uppercase clearfix">
-                                    <a href="#" class="btn btn-default pull-left">
-                                        <span class="hidden-xs">Continue Shopping</span>
-                                        <span class="visible-xs">Continue</span>
-                                    </a>
-                                    <a href="#" class="btn btn-default pull-right">
-                                        Checkout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    
                         <!-- Total Panel Ends -->
                     </div>
                     <!-- Discount & Conditions Blocks Ends -->
@@ -367,7 +324,7 @@
         </div>
         <!-- Main Container Ends -->
         <!-- Footer Section Starts -->
-      
+   
         <!-- Footer Section Ends -->
         <!-- JavaScript Files -->
         <script src="~/js/jquery-1.11.1.min.js"></script>
@@ -379,7 +336,7 @@
         <script src="~/js/custom.js"></script>
         <script src="~/js/sessionPlagin.js"></script>
         <script src="~/js/SessionManager.js"></script>
-        <input type="submit" value="submit" class="btn btn-black" name="AddToCart"/>
+       
    }
 </body>
 </html>

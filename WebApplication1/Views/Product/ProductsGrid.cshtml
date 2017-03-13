@@ -252,8 +252,8 @@
                         @foreach (var item in Model)
             {
                             <div class="col-md-4 col-sm-6">
-
-                                <div class="product-col" @*onclick="location.href = 'Details/@item.ProductModelID'"*@>
+                                <div class="" @*נותן לסגור וגם שיהיה יד*@
+                                <div class="product-col" onclick="location.href = 'ProductDetail/@item.ProductModelID'">
                                     @*@Html.ActionLink("", "Details", new { id = item.ProductModelID })*@
 
                                     <div class="image">
@@ -274,10 +274,12 @@
                                         <div class="cart-button button-group" @*onclick="addToSession('id', 'url', 'name', 'type', 'color', 'price', 'manufacturer')";*@
                                              @*‫onclick="addToSession('@item.ProductModelID', '@item.URLImage', '@item.Name',' @item.Type', '@item.Color','@item.Price', '@item.ManufacturerModels.Name');"*@
                                              @*onclick="hellow(@item);"*@
-                                             @*‫onclick="addToSession(@item.ProductModelID, @item.URLImage, @item.Name, @item.Type, @item.Color,@item.Price, @item.ManufacturerModels.Name);"*@
-                                             onclick="addToSession('2', 'http://files-ptdpritol.netdna-ssl.com/system/photos/1541838/show/5e1389a2da8d5db04c6096c3312a2501.jpg', 'iPhone 7 ',' 128GB SimFree', '','4000', 'Apple');">
-
-                                            <button type="button" class="btn btn-cart">
+                                             @*onclick="addToSession('2', 'http://files-ptdpritol.netdna-ssl.com/system/photos/1541838/show/5e1389a2da8d5db04c6096c3312a2501.jpg', 'iPhone 7 ',' 128GB SimFree', '','4000', '5' ,'Apple');">*@
+                                            @*onclick="addToSession($this);"*@>
+                                            @*<input type="button" value="Assign" onclick="addToSession(this)"
+                                                   data-assigned-id="@item.ProductModelID" />*@
+                                            <button type="button" class="btn btn-cart" onclick="addToSession(this)"
+                                                   data-assigned-id="@item.ProductModelID">
                                                 <i class="fa fa-shopping-cart"></i>
                                                 Add to cart
                                             </button>

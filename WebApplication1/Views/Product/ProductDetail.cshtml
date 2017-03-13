@@ -1,7 +1,7 @@
-﻿
-@model IEnumerable<WebApplication1.Models.ProductModel>
+﻿@model WebApplication1.Models.ProductModel
+
 @{
-    ViewBag.Title = "ProductsGrid";
+    ViewBag.Title = "Details";
 }
 <!doctype html>
 <html lang="en">
@@ -243,8 +243,8 @@
         <div class="row product-info full">
             <!-- Left Starts -->
             <div class="col-sm-4 images-block">
-                <a href="~/images/product-images/big-pimg1.jpg">
-                    <img src="~/images/product-images/MIMI.jpg" alt="Image" class="img-responsive thumbnail" />
+                <a href=@Model.URLImage>
+                    <img src=@Model.URLImage alt="Image" class="img-responsive thumbnail" />
                     @*<img src="@Url.images(model.URLImage)" alt="Image" class="img-responsive thumbnail" />@*@
                 </a>
                 <ul class="list-unstyled list-inline">
@@ -352,7 +352,8 @@
                             <button type="button" title="Compare" class="btn btn-compare">
                                 <i class="fa fa-bar-chart-o"></i>
                             </button>
-                            <button type="button" class="btn btn-cart">
+                            <button type="button" class="btn btn-cart" onclick="addToSession(this)"
+                                                   data-assigned-id="@Model.ProductModelID">
                                 <i class="fa fa-shopping-cart hidden-sm hidden-xs"></i>
                                 Add to Cart
                             </button>
@@ -481,12 +482,12 @@
             <br>
             <!-- Products Row Starts -->
             <div class="row">
-                @foreach (var item in Model)
-                {
+                @*@foreach (var item in Model)
+                {*@
                     @*@if(item.Price == 2500)
                         {*@
 			<!-- Product #1 Starts -->
-                    <div class="col-md-3 col-sm-6">
+                    @*<div class="col-md-3 col-sm-6">
                         <div class="product-col">
                             <div class="image">
                                 <img src="~/images/product-images/10.jpg" alt="product" class="img-responsive" />
@@ -515,8 +516,7 @@
                             </div>
                         </div>
                     </div>
-                }
-                @*}*@
+                }*@
                 <!-- Product #1 Ends -->
                 <!-- Product #2 Starts -->
                 <div class="col-md-3 col-sm-6">
@@ -732,5 +732,6 @@
     <script src="~/js/jquery.magnific-popup.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/custom.js"></script>
+    <script src="~/js/SessionManager.js"></script>
 </body>
 </html>

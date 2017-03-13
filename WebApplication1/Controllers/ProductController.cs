@@ -97,7 +97,22 @@ namespace WebApplication1.Controllers
 
 
         // GET: Product/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id)//או זה או את השני
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProductModel productModel = db.ProductModels.Find(id);
+            if (productModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productModel);
+        }
+
+        // GET: Product/Details/5
+        public ActionResult ProductDetail(int? id)//או זה או את השני
         {
             if (id == null)
             {
