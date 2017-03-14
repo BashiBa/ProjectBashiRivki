@@ -224,8 +224,21 @@
                         <li> @Html.ActionLink("Branches", "Branches", "Home") </li>
                         <li>@Html.ActionLink("Help & Contact  ", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Thanks ", "canvas", "Home")</li>
+                        <li class="dropdown">
+                            <a href="~/Product/ProductsList" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">R&B Phones</a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-inner">
+                                    <ul class="list-unstyled">
+                                        <li>@Html.ActionLink("Create phone", "Create", "Product").If(User.IsInRole("Admin"))</li>
+                                        <li>@Html.ActionLink("All phones", "Index", "Product").If(User.IsInRole("Admin"))</li>
+                                        <li>@Html.ActionLink("All purchase", "Index", "Purchase").If(User.IsInRole("Admin"))</li>
+                                        <li>@Html.ActionLink("All users", "Index", "Account").If(User.IsInRole("Admin"))</li>
 
-                    </ul>
+                                    </ul>
+
+                                </div>
+                            </div>
+</ul>
                     <!-- Nav Links Ends -->
                     <!-- Search Form Starts -->
                     <form class="navbar-form navbar-right hidden-sm hidden-xs" role="search">
@@ -696,96 +709,78 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="product-col">
 								<div class="image">
-									<img src="images/product-images/9.jpg" alt="product" class="img-responsive img-center-sm img-center-xs" />
+									<img src="http://www.interload.co.il/upload/4928517.jpg" alt="product" class="img-responsive img-center-sm img-center-xs" />
 								</div>
 								<div class="caption">
 									<h4>
-										<a href="product-full.html">Digital Electro Goods</a>
+										<a href="product-full.html">Note 5	</a>
 									</h4>
 									<p class="description">
-										We are so lucky living in such a wonderful time. Our almost unlimited ...
+                                        SM-N920C 32GB	
 									</p>
 									<div class="price">
-										<span class="price-new">$199.50</span> 
-										<span class="price-old">$249.50</span>
+										<span class="price-new">$199.50</span> <br />
+                                        <span class="price-old">$239.50</span>
+									
 									</div>
 									<div class="cart-button button-group">
-										<button type="button" class="btn btn-cart">
-											<i class="fa fa-shopping-cart"></i> 
-											Add to cart
-										</button>
-										<button type="button" title="Wishlist" class="btn btn-wishlist">
-											<i class="fa fa-heart"></i>
-										</button>
-										<button type="button" title="Compare" class="btn btn-compare">
-											<i class="fa fa-bar-chart-o"></i>
-										</button>									
-									</div>
+                                        <h4> Click to:</h4>
+                      <h3> @Html.ActionLink("Our full product list", "ProductsList", "Product")	</h3> 
+                                        <h3> @Html.ActionLink("Our full deals ", "Deals", "Home") </h3> 		
+                                    						</div>
 								</div>
 							</div>
 						</div>
 					<!-- Product #1 Ends -->
 					<!-- Product #2 Starts -->
-						<div class="col-md-4 col-sm-6">
-							<div class="product-col">
-								<div class="image">
-									<img src="~/images/product-images/10.jpg" alt="product" class="img-responsive img-center-sm img-center-xs" />
-								</div>
-								<div class="caption">
-									<h4>
-										<a href="product-full.html">Digital Electro Goods</a>
-									</h4>
-									<p class="description">
-										We are so lucky living in such a wonderful time. Our almost unlimited ...
-									</p>
-									<div class="price">
-										<span class="price-new">$199.50</span> 
-										<span class="price-old">$249.50</span>
-									</div>
-									<div class="cart-button button-group">
-										<button type="button" class="btn btn-cart">
-											<i class="fa fa-shopping-cart"></i> 
-											Add to cart
-										</button>
-										<button type="button" title="Wishlist" class="btn btn-wishlist">
-											<i class="fa fa-heart"></i>
-										</button>
-										<button type="button" title="Compare" class="btn btn-compare">
-											<i class="fa fa-bar-chart-o"></i>
-										</button>									
-									</div>
-								</div>
-							</div>
-						</div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-col">
+                                <div class="image">
+                                    <img src="	http://www.interload.co.il/upload/2407630.jpg" alt="product" class="img-responsive img-center-sm img-center-xs" />
+                                </div>
+                                <div class="caption">
+                                    <h4>
+                                        <a href="product-full.html">Xiaomi	</a>
+                                    </h4>
+                                    <p class="description">
+                                        Mi5 32GB
+                                    </p>
+                                    <div class="price">
+                                        <span class="price-new">$180</span> <br />
+                                        <span class="price-old">$200.50</span>
+
+                                    </div>
+                                    <div class="cart-button button-group">
+                                        <h4> Click to:</h4>
+                                        <h3> @Html.ActionLink("Our full product list", "ProductsList", "Product")	</h3>
+                                        <h3> @Html.ActionLink("Our full deals ", "Deals", "Home") </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					<!-- Product #2 Ends -->
 					<!-- Product #3 Starts -->
                         <div class="col-md-4 col-sm-6">
                             <div class="product-col">
                                 <div class="image">
-                                    <img src="images/product-images/9.jpg" alt="product" class="img-responsive img-center-sm img-center-xs" />
+                                    <img src="http://www.interload.co.il/upload/5365669.jpg	" alt="product" class="img-responsive img-center-sm img-center-xs" />
                                 </div>
                                 <div class="caption">
                                     <h4>
-                                        <a href="product-full.html">Digital Electro Goods</a>
+                                        <a href="product-full.html">LG V20	</a>
                                     </h4>
                                     <p class="description">
-                                        We are so lucky living in such a wonderful time. Our almost unlimited ...
+                                        64GB H990
                                     </p>
                                     <div class="price">
-                                        <span class="price-new">$199.50</span>
-                                        <span class="price-old">$249.50</span>
+                                        <span class="price-new">$250</span> <br />
+                                        <span class="price-old">$310</span>
+
                                     </div>
                                     <div class="cart-button button-group">
-                                        <button type="button" class="btn btn-cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Add to cart
-                                        </button>
-                                        <button type="button" title="Wishlist" class="btn btn-wishlist">
-                                            <i class="fa fa-heart"></i>
-                                        </button>
-                                        <button type="button" title="Compare" class="btn btn-compare">
-                                            <i class="fa fa-bar-chart-o"></i>
-                                        </button>
+                                        <h4> Click to:</h4>
+                                        <h3> @Html.ActionLink("Our full product list", "ProductsList", "Product")	</h3>
+                                        <h3> @Html.ActionLink("Our full deals ", "Deals", "Home") </h3>
                                     </div>
                                 </div>
                             </div>
@@ -900,27 +895,23 @@
             <div class="copyright">
                 <!-- Container Starts -->
                 <div class="container">
-                    <!-- Starts -->
-                    <p class="pull-left">
-                        &copy; 2016 Digi Shoppe. Designed By <a href="http://sainathchillapuram.com">Sainath Chillapuram</a>
-                    </p>
-                    <!-- Ends -->
+                 
                     <!-- Payment Gateway Links Starts -->
                     <ul class="pull-right list-inline">
                         <li>
-                            <img src="images/payment-icon/cirrus.png" alt="PaymentGateway" />
+                            <img src="~/images/payment-icon/cirrus.png" alt="PaymentGateway" />
                         </li>
                         <li>
-                            <img src="images/payment-icon/paypal.png" alt="PaymentGateway" />
+                            <img src="~/images/payment-icon/paypal.png" alt="PaymentGateway" />
                         </li>
                         <li>
-                            <img src="images/payment-icon/visa.png" alt="PaymentGateway" />
+                            <img src="~/images/payment-icon/visa.png" alt="PaymentGateway" />
                         </li>
                         <li>
-                            <img src="images/payment-icon/mastercard.png" alt="PaymentGateway" />
+                            <img src="~/images/payment-icon/mastercard.png" alt="PaymentGateway" />
                         </li>
                         <li>
-                            <img src="images/payment-icon/americanexpress.png" alt="PaymentGateway" />
+                            <img src="~/images/payment-icon/americanexpress.png" alt="PaymentGateway" />
                         </li>
                     </ul>
                     <!-- Payment Gateway Links Ends -->

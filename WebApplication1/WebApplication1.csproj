@@ -241,6 +241,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ManufacturerModel.cs" />
+    <Compile Include="Models\ProductManufactorerViewModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\PurchaseModel.cs" />
     <Compile Include="Models\UsersViewModel.cs" />

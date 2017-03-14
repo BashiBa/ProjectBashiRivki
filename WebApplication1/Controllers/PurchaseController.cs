@@ -68,19 +68,45 @@ namespace WebApplication1.Controllers
         {
             List<ProductModel> products = Session["cart"] as List<ProductModel>;
             //ProductModel productToRemove = products.Find(id);
-            List<ProductModel> newProducts = products.Where(product => !(product.ProductModelID.Equals(id.ToString()))).ToList();
+            List<ProductModel> newProducts = products.Where(product => product.ProductModelID!=id).ToList();
             Session["Cart"] = newProducts;
             //products.Remove();
-            
-            return this.Json(new { success = "Success removing from cart !" });
+
+            return RedirectToAction("AddToCart");
+
+            //return this.Json(new { success = "Success removing from cart !" });
         }
 
         public ActionResult TotalPriceInSession()
+
         {
+
             List<ProductModel> products = Session["cart"] as List<ProductModel>;
+
             int sumInSession = (int)products.Sum(product => product.Price);
 
-            return this.Json(new { success = sumInSession });
+            return this.Json(new { sum = sumInSession });
+
+        }
+
+        public ActionResult SumItemsInSession()
+
+        {
+
+            if (Session["cart"] != null)
+
+            {
+
+                List<ProductModel> products = Session["cart"] as List<ProductModel>;
+
+                return this.Json(new { count = products.Count });
+
+            }
+
+            else
+
+                return this.Json(new { count = "0" });
+
         }
 
         // GET: Purchase
@@ -91,9 +117,22 @@ namespace WebApplication1.Controllers
 
 
         // GET: Purchase
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.PurchaseModels.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var pur = db.PurchaseModels.ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+
+                var Purchase = db.PurchaseModels.Where(s => s.CreditNum.Contains(searchString)
+                                      || s.ValidityMonth.Contains(searchString) || s.ValidityYear.Contains(searchString));
+                return View(Purchase.ToList());
+
+            }
+            return View(pur);
+
         }
 
         // GET: Purchase/Details/5
@@ -146,16 +185,28 @@ namespace WebApplication1.Controllers
             // אשלח קוד מייל בהמשך
             if (ModelState.IsValid)
             {
-                Session["Cart"] = null;
+              
                 purchaseModel.IsDone = true;
-              //  var user= db.Users.Where(u => u.Id == purchaseModel.ApplicationUser.Id).FirstOrDefault();
-               //db.Users.Update()
+                //var user= db.Users.Where(u => u.Id == purchaseModel.ApplicationUser.Id).FirstOrDefault();
+                //db.Users.Update()
+
+                //db.Entry(user).State = EntityState.Modified;
+                string Id = User.Identity.GetUserId();
+                ApplicationUser currentUser = db.Users.Where(u => u.Id == Id).FirstOrDefault();
+                purchaseModel.ApplicationUser = currentUser;
+                purchaseModel.ApplicationUserId = Guid.Parse(currentUser.Id);
+
+                List<ProductModel> products = Session["cart"] as List<ProductModel>;
+                purchaseModel.ProductModels = products;
+
                 db.PurchaseModels.Add(purchaseModel);
-               
-                db.SaveChanges();
+
+                    db.SaveChanges();
+                
+                Session["Cart"] = null;
                 //string id = HttpContext.User.Identity.Name.ToString();
                 //var userId = User.Identity.GetUserId();
-          
+
                 //db.PurchaseModels.AddRange(purchaseModel.ApplicationUserId);
                 //db.Users.Join<ApplicationUser>
                 //ProfileBase profileBase;
@@ -166,7 +217,29 @@ namespace WebApplication1.Controllers
                 //profileBase.GetPropertyValue("PersonalInformation.Country");
                 ////var user = System.Web.HttpContext.Current.User.Identity.();
                 //string mail = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-                SendClienEmail("HEY :)", "rbphones2017@gmail.com", "BASHIRIVKI", "rivkiaha@gmail.com", "R&B PHONES", "קניתך התבצעה בהצלחה כפיםםםםם ;-)", @"~\images\product-images\big-pimg1.jpg");
+                string msg = "Hi, your purchase detail: ";
+                foreach (ProductModel item in purchaseModel.ProductModels)
+                {
+
+
+                    ProductManufactorerViewModel details = db.ProductModels.Join(
+                     db.ManufacturerModels,
+                     product => product.ManufacturerModelID,
+                     manufacturer => manufacturer.ManufacturerModelID,
+                     (product, manufacturer) =>
+                       new ProductManufactorerViewModel()
+                       {
+                           NameProduct = product.Name,
+                           NameManufactorer = manufacturer.Name
+                       }).FirstOrDefault();
+                    if (details != null)
+                    {
+                        msg += "product: " + details.NameProduct + ", manufacturer: " + details.NameManufactorer;
+                    }
+                    msg += "  ";
+                }
+                SendClienEmail("HEY :)", "rbphones2017@gmail.com", "BASHIRIVKI", "rivkiaha@gmail.com", "R&B PHONES", msg, @"~\images\product-images\big-pimg1.jpg");
+                //SendClienEmail("HEY :)", "rbphones2017@gmail.com", "BASHIRIVKI", "rivkiaha@gmail.com", "R&B PHONES", "קניתך התבצעה בהצלחה כפיםםםםם ;-)", @"~\images\product-images\big-pimg1.jpg");
                 //send menager email
                 return RedirectToAction("SuccessPurchase");
             }
@@ -291,6 +364,7 @@ namespace WebApplication1.Controllers
                 return "Email Send failed";
             }
         }
+
 
     }
 }

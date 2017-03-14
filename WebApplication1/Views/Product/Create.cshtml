@@ -48,13 +48,13 @@ $(".tweet-this a").tweetIt();
             @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="form-group">
-                    <select name="select" id="select" class="form-control">
-                        <option value="1" selected>black</option>
-                        <option value="2">white</option>
-                        <option value="3">silver</option>
+                    <select name="Color" id="Color" class="form-control" >
+                        <option value="black" selected>black</option>
+                        <option value="white">white</option>
+                        <option value="silver">silver</option>
                     </select>
                 </div>
-                @*@Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })*@
+               @*@Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })**@
                 @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
             </div>
         </div>

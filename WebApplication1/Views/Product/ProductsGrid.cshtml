@@ -68,7 +68,7 @@
             <ol class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li class="active">Products</li>
-                <li class="active">Products-list</li>
+                <li class="active">Products-Grid</li>
             </ol>
             <!-- Breadcrumb Ends -->
         </div>
@@ -252,7 +252,7 @@
                         @foreach (var item in Model)
             {
                             <div class="col-md-4 col-sm-6">
-                                <div class="" @*נותן לסגור וגם שיהיה יד*@
+                               
                                 <div class="product-col" onclick="location.href = 'ProductDetail/@item.ProductModelID'">
                                     @*@Html.ActionLink("", "Details", new { id = item.ProductModelID })*@
 

@@ -215,8 +215,8 @@
                                     <li>@Html.ActionLink("Create phone", "Create", "Product").If(User.IsInRole("Admin"))</li>
                                     <li>@Html.ActionLink("All phones", "Index", "Product").If(User.IsInRole("Admin"))</li>
                                     <li>@Html.ActionLink("All purchase", "Index", "Purchase").If(User.IsInRole("Admin"))</li>
-                                    <li>@Html.ActionLink("All users", "Index", "Account")</li>
-                                    <li><a tabindex="-1" href="#">maybe we will add to </a></li>
+                                    <li>@Html.ActionLink("All users", "Index", "Account").If(User.IsInRole("Admin"))</li>
+                             
                                 </ul>
 
                             </div>
@@ -261,13 +261,7 @@
                     <h3>Follow us</h3>
                     <h5>We have new phones and atractive deals </h5>
                     <h5>Buy our  goods products today!</h5>
-                    <ul class="list-unstyled list-inline foot-sm-links">
-                        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
+                   
                 </div>
                 <!-- Social Network Ends -->
                 <!-- Subscription Form Starts -->
@@ -302,7 +296,7 @@
                 <div class="col-md-2 col-sm-3 col-xs-12">
                     <h5>Information</h5>
                     <ul>
-                        <li>@Html.ActionLink("About us", "About", "Home") </li>
+                        <li>@Html.ActionLink("About us", "AboutTheShop", "Home") </li>
                         <li>@Html.ActionLink("Branches", "Branches", "Home")  </li>
 
                     </ul>
@@ -388,7 +382,23 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
+    <script type="text/javascript">
 
+$(document).ready(function () {
+
+$.post('/Purchase/SumItemsInSession',
+
+//{ key: "cart", id: id },
+
+function (data) {
+
+$("#cart-total").text(data.count + ' items');
+
+});
+
+});
+
+    </script>
 </div>
 
 @Scripts.Render("~/bundles/jquery")

@@ -50,9 +50,9 @@
 <body>
     @using (@Html.BeginForm())
     {
-       
+
         <!-- Header Wrap Starts -->
-     
+
         <!-- Header Wrap Ends -->
         <!-- Breadcrumb Starts -->
         <div class="breadcrumb-wrap">
@@ -96,7 +96,7 @@
                             <td class="text-center">
                                 Action
                             </td>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -109,8 +109,8 @@
                                         @*<a href="product.html">
                                                 <img src=@item.URLImage alt="Product Name" title="Product Name" class="img-thumbnail" />
                                             </a>*@
-                                      <div class="image">
-                                          <img src=@item.URLImage  width="60" height="60"   &emsp alt="product" class="img-responsive" />
+                                        <div class="image">
+                                            <img src=@item.URLImage width="60" height="60" &emsp alt="product" class="img-responsive" />
                                         </div>
                                     </td>
                                     <td class="text-center">
@@ -129,7 +129,7 @@
                                         </td>*@
                                     <td class="text-center">
                                         <br />
-                                       1
+                                        1
                                     </td>
                                     <td class="text-center">
                                         <br />
@@ -137,12 +137,12 @@
                                     </td>
                                     <td class="text-center">
                                         <br />
-                                    A spicial price just today!
+                                        A spicial price just today!
                                     </td>
                                     <td class="text-center">
-                                      
+
                                         <button type="button" title="Remove" class="btn btn-default tool-tip" onclick="removeFromSession(this)"
-                                                   data-assigned-id="@item.ProductModelID">
+                                                data-assigned-id="@item.ProductModelID">
                                             <i class="fa fa-times-circle"></i>
                                         </button>
                                     </td>
@@ -184,10 +184,7 @@
                             <td colspan="4" class="text-right">
                                 <strong>Total :</strong>
                             </td>
-                            <td colspan="2" class="text-left"   >
-                                $300
-                                GetSumPriceInSession();
-                            </td>
+                            <td id="totalSum" colspan="2" class="text-left"></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -199,37 +196,44 @@
                     <!-- Shipping & Shipment Block Starts -->
                     <div class="col-sm-6">
                         <!-- Taxes Block Starts -->
-                    
                         <!-- Taxes Block Ends -->
                         <!-- Shipment Information Block Starts -->
                         <div class="panel panel-smart">
                             <div class="panel-heading">
-                                <h3 class="panel-title" style="color:cornflowerblue" >
+                                <h3 class="panel-title" style="color:cornflowerblue">
                                     delivery details
                                 </h3>
                             </div>
+                            <h5><u> The product will be sent to the following address:</u></h5>
                             <div class="panel-body">
-                                <p> We use your log in account  delivery details</p>
-                                <p>Bashi - Rivki  if we have a time to bring from db</p>
-                                @Html.HiddenFor(model => model.ApplicationUserId)
+
+                                <h5>@Model.ApplicationUser.Street </h5>
+                                <h5>@Model.ApplicationUser.NumberHouse</h5>
+                                <h5> @Model.ApplicationUser.City</h5>
+                                <h5> @Model.ApplicationUser.Country</h5>
+                                <hr />
+
                                 <div class="form-group">
-                                    @Html.LabelFor(model => Model.ApplicationUser.City, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => Model.ApplicationUser.City, new { htmlAttributes = new { @class = "form-control" } })
-                                        @*@Html.ValidationMessageFor(model => Model.ApplicationUser.City, "", new { @class = "text-danger" })*@
-                                    </div>
+
+                                    <p><b>NOTE: </b>  </p>
+                                    <p>
+                                        If you want to change delivery details
+                                        <a href="~/Views/Home/contact.cshtml">click here</a>
+                                    </p>
                                 </div>
+
+
 
 
                             </div>
                         </div>
                         <div class="panel panel-smart">
                             <div class="panel-heading">
-                                <h3 class="panel-title" style="color:cornflowerblue" >
+                                <h3 class="panel-title" style="color:cornflowerblue">
                                     Payment Information
                                 </h3>
                             </div>
-                           
+
                             <div class="panel-body">
                                 <!-- Form Starts -->
                                 @*<form class="form-horizontal" role="form">*@
@@ -262,11 +266,13 @@
 
                                 <br />
                                 <h3> <b>NOTE:</b></h3>
-                                <h5>If you do not want to pay online
-                                    You can pay by phone 055-05502231 </h5>
+                                <h5>
+                                    If you do not want to pay online
+                                    You can pay by phone 055-05502231
+                                </h5>
                                 <div class="form-group" @*onclick="location.href = 'Index/@item.ProductModelID'"*@>
                                     @*<div class="col-sm-offset-3 col-sm-9">*@
-                                        <input type="submit" value="Completion purchase" class="btn btn-black" name="AddToCart" />
+                                    <input type="submit" value="Completion purchase" class="btn btn-black" name="AddToCart" />
                                     @*</div>*@
                                 </div>
                                 @*</form>*@
@@ -275,18 +281,17 @@
                             <!-- =paste here-->
                         </div>
                         <!-- Shipment Information Block Ends -->
-                    
+
                     </div>
                     <!-- Shipping & Shipment Block Ends -->
                     <!-- Discount & Conditions Blocks Starts -->
                     <div class="col-sm-6">
                         <!-- Discount Coupon Block Starts -->
-                   
                         <!-- Discount Coupon Block Ends -->
                         <!-- Conditions Panel Starts -->
                         <div class="panel panel-smart">
                             <div class="panel-heading">
-                                <h3 class="panel-title" style="color:cornflowerblue" >
+                                <h3 class="panel-title" style="color:cornflowerblue">
                                     Terms &amp; Conditions
                                 </h3>
                             </div>
@@ -314,7 +319,6 @@
                         </div>
                         <!-- Conditions Panel Ends -->
                         <!-- Total Panel Starts -->
-                    
                         <!-- Total Panel Ends -->
                     </div>
                     <!-- Discount & Conditions Blocks Ends -->
@@ -324,7 +328,7 @@
         </div>
         <!-- Main Container Ends -->
         <!-- Footer Section Starts -->
-   
+
         <!-- Footer Section Ends -->
         <!-- JavaScript Files -->
         <script src="~/js/jquery-1.11.1.min.js"></script>
@@ -336,7 +340,19 @@
         <script src="~/js/custom.js"></script>
         <script src="~/js/sessionPlagin.js"></script>
         <script src="~/js/SessionManager.js"></script>
-       
-   }
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.post('/Purchase/TotalPriceInSession',
+           //{ key: "cart", id: id },
+           function (data) {
+               $("#totalSum").text(data.sum + ' $');
+           });
+            });
+        </script>
+
+
+
+
+    }
 </body>
 </html>
